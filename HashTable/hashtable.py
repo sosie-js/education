@@ -36,6 +36,9 @@ class HashTable:
 	# 		  value - anything
 	# Output: void
 	def insert(self, key, value):
+	        # 0. prevent capacity overflow
+                if(self.size >= INITIAL_CAPACITY):
+                  raise Exception("ALERT:insert(self, key, value) provoked a hashtable capacity overlow, (limit of %d reached, you may increase it)" % (self.capacity))
 		# 1. Increment size
 		self.size += 1
 		# 2. Compute index of key
@@ -78,6 +81,9 @@ class HashTable:
 	# Input:  key - string
 	# Output: removed data value or None if not found
 	def remove(self, key):
+		# 0. prevent capacity overflow
+                if(self.size >= INITIAL_CAPACITY):
+                        raise Exception("ALERT:insert(self, key, value) provoked a hashtable capacity overlow, (limit of %d reached, you may increase it)" % (self.capacity))
 		# 1. Compute hash
 		index = self.hash(key)
 		node = self.buckets[index]
